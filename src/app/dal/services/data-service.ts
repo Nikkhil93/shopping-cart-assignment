@@ -8,6 +8,9 @@ export class DataService {
 
   static async getRequest(endpoint: string) {
     const response = await fetch(`${this.url}${endpoint}`);
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
     const data = await response.json();
     return data;
   }

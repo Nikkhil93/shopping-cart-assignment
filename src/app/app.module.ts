@@ -13,7 +13,7 @@ import { CartComponent } from './components/cart/cart.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderModule } from './components/header/header.module';
 import { DropdownDirective } from './dal/directives/dropdown.directive';
-import { HttpClientModule } from '@angular/common/http';
+import { ErrorHandlerComponent } from './components/error-handler/error-handler.component';
 
 @NgModule({
   declarations: [
@@ -22,14 +22,14 @@ import { HttpClientModule } from '@angular/common/http';
     HomeComponent,
     ProductComponent,
     CartComponent,
-    DropdownDirective
+    DropdownDirective,
+    ErrorHandlerComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MatIconModule,
     MatSnackBarModule,
-    HttpClientModule,
     HeaderModule,
     NgbModule,
     BrowserAnimationsModule

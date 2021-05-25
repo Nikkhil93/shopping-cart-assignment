@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
       this.banners = data;
     });
     this.bazaarDataService.getCategoriesData().then((data)=>{
-      this.categories = data.filter(category => category.enabled);
+      this.categories = data?.filter(category => category.enabled);
     });
   }
 
