@@ -1,0 +1,89 @@
+/* You can add global styles to this file, and also import other style files */
+@import url(https://fonts.googleapis.com/css?family=Dosis:400,600,700);
+@import './variables.scss';
+
+body {
+    font-family: "Dosis";
+}
+
+.carousel-indicators li {
+    background-color: $color-black;
+}
+
+.carousel-control-next-icon,
+.carousel-control-prev-icon {
+    background-color: $color-black;
+}
+
+.btn-pink {
+    background-color: $color-pink;
+    color: $color-white;
+}
+
+.carousel-control-prev-icon::before {
+
+    background-color: $color-black;
+    content: 'PREV';
+    padding: 10px 10px;
+    font-size: 1rem;
+    color: white;
+}
+.mat-dialog-container{ padding: 0 !important; }
+
+.carousel-control-next-icon::before {
+    background-color: $color-black;
+    padding: 10px 10px;
+    content: "NEXT";
+    font-size: 1rem;
+    color: white;
+}
+
+.carousel-indicators li {
+    background-color: $color-grey;
+    border-radius: 50%;
+    margin: 10px;
+    max-width: 6px;
+    height: 6px;
+}
+
+.carousel-indicators .active {
+    background-color: $color-black;
+    max-width: 6px;
+    height: 6px;
+}
+
+input.form-control {
+    outline: none;
+    border-width: 0 0 2px;
+    border-color: $color-black;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    box-shadow: none;
+}
+
+input.form-control:focus {
+    border-color: $color-blue;
+    box-shadow: none;
+}
+
+.was-validated input.form-control:invalid:focus,
+.was-validated input.form-control:valid:focus {
+    box-shadow: none;
+}
+
+.was-validated:focus-within:invalid {
+    label {
+        color: $color-black;
+    }
+}
+
+.form-group {
+    &:focus-within {
+        label {
+            color: $color-blue;
+        }
+    }
+
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

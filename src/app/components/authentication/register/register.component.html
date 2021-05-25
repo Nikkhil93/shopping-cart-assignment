@@ -1,0 +1,53 @@
+<div class="container d-flex mt-2">
+    <div class="register-content">
+        <h1><strong>Signup</strong></h1>
+        <p>We do not share your details with anyone</p>
+    </div>
+    <div class="ml-4 col-md-4">
+        <form #registerForm="ngForm" novalidate (ngSubmit)="submit()" [ngClass]="{'was-validated':formSubmitted}">
+            <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input id="firstName" type="text" class="form-control" name="firstName" ngModel required aria-required="true"
+                    autocomplete="off">
+                <div class="invalid-feedback">
+                    Please enter First Name.
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input id="lastName" type="text" class="form-control" name="lastName" ngModel required aria-required="true"
+                    autocomplete="off">
+                <div class="invalid-feedback">
+                    Please enter Last Name.
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input id="email" type="email" class="form-control" name="email" pattern="\S+@\S+\.\S+" required
+                    aria-required="true" autocomplete="off" ngModel>
+                <div class="invalid-feedback">
+                    Please enter a valid email.
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input id="password" type="password" class="form-control" name="password" aria-required="true" required minlength="6"
+                    pattern="(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)"
+                    title="Password must be alphanumeric and must have minimum six characters"
+                    autocomplete="off" ngModel>
+                <div class="invalid-feedback">
+                    Please enter a valid password.
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password</label>
+                <input id="confirmPassword" type="password" class="form-control" name="confirmPassword" pattern="(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)" aria-required="true" required
+                    autocomplete="off" ngModel>
+                <div class="invalid-feedback">
+                    {{confirmPasswordErrorMsg}}
+                </div>
+            </div>
+            <button class=" w-100 btn btn-pink mt-2" type="submit">Register</button>
+        </form>
+    </div>
+</div>

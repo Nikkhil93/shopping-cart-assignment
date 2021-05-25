@@ -13,3 +13,15 @@ npm run start
 yarn install
 yarn start
 ```
+
+To start the client server (web server):
+
+```
+npm run startDev
+```
+
+To run the test cases
+
+```
+npm run testDev
+```

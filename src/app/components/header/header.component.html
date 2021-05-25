@@ -1,0 +1,29 @@
+<div class="container">
+    <nav class="navbar navbar-expand-sm navbar-light">
+        <a class=" navbar-brand" routerLink="/home">
+            <img src="assets/static/images/logo.png" class="img-fluid" alt="Sabka bazzar Logo" loading="lazy"/>
+        </a>
+        <div class="d-none d-sm-block">
+            <ul class="navbar-nav ml-4">
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/product">Product</a>
+                </li>
+            </ul>
+        </div>
+        <div class="d-flex flex-column ml-auto">
+            <div class="d-none d-sm-block">
+                <ul class="navbar-nav align-self-end">
+                    <li class="nav-item"><a routerLink="/auth/login" class="nav-link">Login</a></li>
+                    <li class="nav-item"><a routerLink="/auth/register" class="nav-link">Register</a></li>
+                </ul>
+            </div>
+            <button class="btn btn-lg btn-light d-block" type="button" aria-label="View cart" role="button" (click)="cartAction()">
+                <img src="assets/static/images/cart.svg" class="img-fluid" width="40" height="40" alt="cart image" loading="lazy" />
+                <span id="cartValue display-5"></span>{{cartValue$ | async}} &nbsp;<small>Item(s)</small>
+            </button>
+        </div>
+    </nav>
+</div>
