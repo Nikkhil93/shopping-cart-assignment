@@ -4,6 +4,7 @@ import { CartComponent } from './components/cart/cart.component';
 import { ErrorHandlerComponent } from './components/error-handler/error-handler.component';
 import { HomeComponent } from './components/home/home.component';
 import { ProductComponent } from './components/product/product.component';
+import { CanActivateRouteGuard } from './dal/services/can-activate-route.guard';
 
 const routes: Routes = [{
   path: 'home',
@@ -24,7 +25,8 @@ const routes: Routes = [{
 },
 {
   path: 'error',
-  component: ErrorHandlerComponent
+  component: ErrorHandlerComponent,
+  canActivate: [CanActivateRouteGuard]
 },
 {
   path: '',

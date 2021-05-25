@@ -3,6 +3,7 @@ import { environment } from '../../../environments/environment'
 export class DataService {
 
   private static url = environment.apiUrl;
+  public static errorOccured: boolean = false;
 
   constructor() { }
 

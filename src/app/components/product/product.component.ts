@@ -31,7 +31,7 @@ export class ProductComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.bazaarDataService.getCategoriesData().then((data: any[]) => this.categories = data.filter(category => category.enabled));
+    this.bazaarDataService.getCategoriesData().then((data: any[]) => this.categories = data?.filter(category => category.enabled));
     this.bazaarDataService.getProductsData().then(data => {
       this.products = data;
       this.filterProducts(this.currentState?.state?.categoryId);
@@ -40,7 +40,7 @@ export class ProductComponent implements OnInit {
 
   filterProducts(categoryId: string) {
     if (this.selectedCategoryId === categoryId) {
-      this.filteredProducts = this.products.slice();
+      this.filteredProducts = this.products?.slice();
     } else {
       this.selectedCategoryId = categoryId;
       this.selectedCategory = this.categories.filter(category => categoryId === category.id)[0].name;

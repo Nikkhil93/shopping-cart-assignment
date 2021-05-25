@@ -17,6 +17,7 @@ export class BazaarDataService {
   getBannersData(): Promise<BannerImageModel[]> {
     return (this.banners.length === 0) ? 
       DataService.getRequest("banners").catch((err)=>{
+        DataService.errorOccured= true;
         this.router.navigate(['/error']);
       }): 
       Promise.resolve(this.banners);
