@@ -8,37 +8,24 @@ import { DataService } from './data-service';
 })
 
 export class BazaarDataService {
-  banners: BannerImageModel[] = [];
-  categories: CategoriesDataModel[] = [];
-  products: ProductDataModel[] = [];
-
   constructor(private router: Router) { }
 
+  private handleError(error){
+    DataService.errorOccured= true;
+    this.router.navigate(['/error']);
+  }
+
   getBannersData(): Promise<BannerImageModel[]> {
-    return (this.banners.length === 0) ? 
-      DataService.getRequest("banners").catch((err)=>{
-        DataService.errorOccured= true;
-        this.router.navigate(['/error']);
-      }): 
-      Promise.resolve(this.banners);
+    return DataService.getRequest("banners").catch(this.handleError.bind(this))
   }
 
   getCategoriesData(): Promise<CategoriesDataModel[]> {
-    return this.categories.length === 0 ?
-      DataService.getRequest("categories").catch((err)=>{
-        this.router.navigate(['/error']);
-      }): 
-      Promise.resolve(this.categories);
+    return DataService.getRequest("categories").catch(this.handleError.bind(this))
   }
 
   getProductsData(): Promise<ProductDataModel[]> {
-    return (this.products.length === 0) ?
-      DataService.getRequest("products").catch((err)=>{
-        this.router.navigate(['/error']);
-      }): 
-      Promise.resolve(this.products);
+    return DataService.getRequest("products").catch(this.handleError.bind(this))
   }
-
 
   addToCart(productId) : Promise<any> {
     return DataService.postRequest("addToCart",productId);

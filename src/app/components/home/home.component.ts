@@ -1,3 +1,4 @@
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { BannerImageModel, CategoriesDataModel } from '../../dal/models/banner-data.model';
@@ -6,12 +7,40 @@ import { BazaarDataService } from '../../dal/services/bazaar-data.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
+  animations:[
+    trigger('startItems',[
+      state('normal',style({
+        opacity:1
+      })),
+      transition('void => *',[
+        style({
+          opacity: 0,
+          transform: 'translateX(-100px)'
+        }),
+        animate(500)
+      ])
+    ]),
+    trigger('centerItems',[
+      state('normal',style({
+        opacity:1
+      })),
+      transition('void => *',[
+        style({
+          opacity: 0,
+          transform: 'translateX(100px)'
+        }),
+        animate(500)
+      ])
+    ])
+  ]
 })
 export class HomeComponent implements OnInit {
 
   banners: BannerImageModel[];
   categories: CategoriesDataModel[];
+  animateCenter: string = "normal"; 
+  animateStart:string = "normal";
 
   constructor(
     private bazaarDataService: BazaarDataService,
@@ -35,5 +64,4 @@ export class HomeComponent implements OnInit {
     };
     this.route.navigate(['product'], categoryDetails)
   }
-
 }

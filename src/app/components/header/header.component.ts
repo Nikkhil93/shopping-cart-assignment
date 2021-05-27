@@ -3,6 +3,7 @@ import { Subject, Subscription } from 'rxjs';
 import { BreakpointObserver} from '@angular/cdk/layout';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+
 import { CartService } from '../../dal/services/cart.service';
 import { CartComponent } from '../cart/cart.component'
 import { CartDialogService } from '../../dal/services/cart-diaog.service';
@@ -13,7 +14,7 @@ import { CartDialogService } from '../../dal/services/cart-diaog.service';
   styleUrls:['./header.component.scss']
 })
 export class HeaderComponent implements OnInit , OnDestroy{
-  private subscriptions : Subscription[] = [];
+  private subscriptions : Subscription = new Subscription();
   private dialogRef$: MatDialogRef<CartComponent>;
   private isAboveMedium: boolean;
   private dialogConfig: MatDialogConfig = {
@@ -30,15 +31,14 @@ export class HeaderComponent implements OnInit , OnDestroy{
     private router: Router,
     private cartDialog: CartDialogService
   ) { 
-    // demonstrating the use of subscription array
-    this.subscriptions.push(this.breakPointObserver.observe('(min-width: 992px)').subscribe((state)=>{
+    this.subscriptions.add(this.breakPointObserver.observe('(min-width: 992px)').subscribe((state)=>{
       this.isAboveMedium = state.matches;
     }));
   }
 
   ngOnInit(): void {
     this.cartValue$ = this.cartService.getTotalCartItems();
-    this.subscriptions.push(this.cartDialog.closeClicked.subscribe(()=>{
+    this.subscriptions.add(this.cartDialog.closeClicked.subscribe(()=>{
       this.dialogRef$.close();
       })
     );
@@ -52,7 +52,7 @@ export class HeaderComponent implements OnInit , OnDestroy{
     this.dialogRef$ = this.dialog.open(CartComponent, this.dialogConfig);
   }
   ngOnDestroy(){
-    this.subscriptions.forEach(subscription => subscription.unsubscribe());
+    this.subscriptions.unsubscribe();
   }
 
 }
