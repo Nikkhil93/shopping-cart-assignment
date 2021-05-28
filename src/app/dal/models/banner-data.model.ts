@@ -12,7 +12,7 @@ export interface CategoriesDataModel {
   description: string;
   enabled: boolean;
   order: number;
-  imageUrl: string;
+  imageUrl?: string;
   id: string;
 }
 
