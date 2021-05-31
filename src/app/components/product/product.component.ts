@@ -6,6 +6,7 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 import { BazaarDataService } from '../../dal/services/bazaar-data.service';
 import { CartService } from '../../dal/services/cart.service';
 import { CategoriesDataModel, ProductDataModel } from '../../dal/models/banner-data.model';
+import { SpinnerDisplayService } from 'src/app/dal/services/spinner-display.service';
 
 @Component({
   selector: 'app-product',
@@ -40,17 +41,22 @@ export class ProductComponent implements OnInit {
     private bazaarDataService: BazaarDataService,
     private router: Router,
     private cartService: CartService,
-    private _snackbar: MatSnackBar
+    private _snackbar: MatSnackBar,
+    private spinnerDisplayService: SpinnerDisplayService
   ) {
     this.currentState = this.router.getCurrentNavigation()?.extras
   }
 
 
   ngOnInit(): void {
-    this.bazaarDataService.getCategoriesData().then((data: any[]) => this.categories = data?.filter(category => category.enabled));
+    this.bazaarDataService.getCategoriesData().then((data: any[]) => {
+      this.categories = data?.filter(category => category.enabled);
+      this.spinnerDisplayService.showSpinner$.next(false);
+    });
     this.bazaarDataService.getProductsData().then(data => {
       this.products = data;
       this.filterProducts(this.currentState?.state?.categoryId);
+      this.spinnerDisplayService.showSpinner$.next(false);
     });
   }
 

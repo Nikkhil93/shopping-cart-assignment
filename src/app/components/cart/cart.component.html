@@ -57,9 +57,9 @@
     class="w-100 btn btn-pink d-sm-flex" 
     [ngClass]="{'justify-content-between':totalCartItems!==0, 'justify-content-center':totalCartItems === 0}"
     (click)="navigateIfEmpty()">
-      <span *ngIf="totalCartItems!==0" class="text-align-left">Proceed to checkout</span> 
-      <span *ngIf="totalCartItems ===0" class="text-align-left">Start Shopping</span> 
-      <span *ngIf="totalCartItems!==0" class="text-align-right ml-2">Rs.{{cartPrice$ | async}}</span>
+      <span *ngIf="totalCartItems!==0">Proceed to checkout</span> 
+      <span *ngIf="totalCartItems ===0">Start Shopping</span> 
+      <span *ngIf="totalCartItems!==0" class="ml-2">Rs.{{cartPrice$ | async}}</span>
     </button>
   </div>
 </div>

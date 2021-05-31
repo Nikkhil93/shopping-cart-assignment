@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -30,6 +31,7 @@ import { ErrorHandlerComponent } from './components/error-handler/error-handler.
     AppRoutingModule,
     MatIconModule,
     MatSnackBarModule,
+    MatProgressSpinnerModule,
     HeaderModule,
     NgbModule,
     BrowserAnimationsModule

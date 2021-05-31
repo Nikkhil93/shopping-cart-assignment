@@ -1,16 +1,20 @@
-.banner-image{
-    width: 100%;
+.banner-image {
+  width: 100%;
 }
-ngb-carousel{
-    box-shadow: 0 2px #f4f4f4;
+ngb-carousel {
+  box-shadow: 0 2px #f4f4f4;
+}
+.categories > div {
+  box-shadow: 0 2px 2px #f4f4f4;
 }
 
-::ng-deep.carousel-indicators{
-    bottom: -20px;
+::ng-deep.carousel-indicators {
+  bottom: -20px;
 }
 
-@media (max-width: 576px){
-    .container, .container-sm {
-        max-width: 100%;
-    }
+@media (max-width: 576px) {
+  .container,
+  .container-sm {
+    max-width: 100%;
+  }
 }

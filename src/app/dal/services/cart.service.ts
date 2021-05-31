@@ -23,7 +23,7 @@ export class CartService {
     const product = this.orderDetails.find(product => product.productId === productId);
     if (product) {
       product.productValue += 1;
-      product.productPrice = Number(originalPrice) * product.productValue;
+      product.productPrice = +originalPrice * product.productValue;
     } else {
       this.orderDetails.push({ productId, productName, productUrl,originalPrice, productPrice: originalPrice, productValue: 1 });
     }
@@ -49,12 +49,12 @@ export class CartService {
     if (increment) {
       product.productValue += 1;
       this.noOfCartItems+=1;
-      product.productPrice = Number(product.originalPrice) * product.productValue;
-      this.totalPrice+= Number(product.originalPrice)
+      product.productPrice = +product.originalPrice * product.productValue;
+      this.totalPrice+= +product.originalPrice
     } else {
       product.productValue -= 1;
       this.noOfCartItems -= 1;
-      product.productPrice = Number(product.originalPrice)* product.productValue;
+      product.productPrice = +product.originalPrice * product.productValue;
       this.totalPrice-= product.originalPrice;
       if (product.productValue === 0) {
         this.orderDetails = this.orderDetails.filter(product => product.productId !== productId);
