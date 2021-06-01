@@ -1,3 +1,4 @@
+<div class=" container alert-danger d-flex justify-content-center" *ngIf="incorrectDetails"><h1> Invalid user, Try test@test.com and test123</h1></div>
 <div class="container d-flex mt-2">
   <div class="login-content">
     <h1><strong>Login</strong></h1>
@@ -12,7 +13,7 @@
           name="email" 
           class="form-control" 
           type="email" 
-          ngModel 
+          [(ngModel)]= "email"
           aria-required="true"
           pattern="\S+@\S+\.\S+" 
           required 
@@ -27,8 +28,8 @@
           id="password" 
           name="password" 
           class="form-control" 
-          type="password" 
-          ngModel  
+          type="password"
+          [(ngModel)]= "password"
           required
           minlength="6" 
           pattern="(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)"

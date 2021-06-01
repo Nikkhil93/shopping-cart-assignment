@@ -3,10 +3,11 @@ import { Subject, Subscription } from 'rxjs';
 import { BreakpointObserver} from '@angular/cdk/layout';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { CartComponent } from '../../shop/cart/cart.component'
+import { CartDialogService } from '../../shop/services/cart-diaog.service';
+import { CartService } from '../../shop/services/cart.service';
 
-import { CartService } from '../../dal/services/cart.service';
-import { CartComponent } from '../cart/cart.component'
-import { CartDialogService } from '../../dal/services/cart-diaog.service';
+
 
 @Component({
   selector: 'app-header',
@@ -44,9 +45,11 @@ export class HeaderComponent implements OnInit , OnDestroy{
     );
   }
 
+  //ngDocs
   public cartAction(){
     this.isAboveMedium ? this.openDialog() : this.router.navigate(['/cart']);
   }
+  //ngDocs
   private openDialog(){
     this.dialogConfig.data = this.isAboveMedium;
     this.dialogRef$ = this.dialog.open(CartComponent, this.dialogConfig);

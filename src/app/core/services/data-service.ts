@@ -26,4 +26,13 @@ export class DataService {
     return jsonData;
   }
 
+  static async getLoginRequest(){
+    const response = await fetch(`${this.url}/login`);
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
+    const data = await response.json();
+    return data;
+  }
+
 }

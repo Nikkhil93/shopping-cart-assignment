@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { CartService } from 'src/app/dal/services/cart.service';
+import { CartService } from '../services/cart.service';
 
 import { CartComponent } from './cart.component';
 

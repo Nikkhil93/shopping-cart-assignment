@@ -1,0 +1,14 @@
+[
+ {
+    "email":"test@test.com",
+    "password":"test123"
+  },
+  {
+    "email":"abc@pqr.com",
+    "password":"abc123"
+  },
+  {
+    "email":"qwe@qwe.com",
+    "password":"qwe123"
+  }
+]

@@ -2,8 +2,8 @@ import { Component, Inject, OnInit, Optional } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Subscription } from 'rxjs';
-import { CartDialogService } from '../../dal/services/cart-diaog.service';
-import { CartService } from '../../dal/services/cart.service';
+import { CartDialogService } from '../services/cart-diaog.service';
+import { CartService } from '../services/cart.service';
 
 @Component({
   selector: 'app-cart',
@@ -31,15 +31,18 @@ export class CartComponent implements OnInit {
     this.cartPrice$ = this.cartService.getCartPrice();
   }
 
+  //ngDocs
   updateProduct(productId, increment) {
     this.cartService.updateProduct(productId, increment);
   }
+  //ngDocs
   navigateIfEmpty(){
     if(this.totalCartItems === 0){
       this.router.navigate(['/product']);
       this.data?this.closeDialog():'';
     }
   }
+  //ngDocs
   closeDialog(){
     this.cartDialog.closeClicked.next(true);
   }

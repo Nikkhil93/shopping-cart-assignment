@@ -3,10 +3,10 @@ import { NavigationExtras, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 
-import { BazaarDataService } from '../../dal/services/bazaar-data.service';
-import { CartService } from '../../dal/services/cart.service';
-import { CategoriesDataModel, ProductDataModel } from '../../dal/models/banner-data.model';
-import { SpinnerDisplayService } from 'src/app/dal/services/spinner-display.service';
+import { BazaarDataService } from '../services/bazaar-data.service';
+import { CartService } from '../services/cart.service';
+import { CategoriesDataModel, ProductDataModel } from '../../shared/models/banner-data.model';
+import { SpinnerDisplayService } from 'src/app/core/services/spinner-display.service';
 
 @Component({
   selector: 'app-product',
@@ -60,6 +60,7 @@ export class ProductComponent implements OnInit {
     });
   }
 
+  //ngDocs
   filterProducts(categoryId: string) {
     if (this.selectedCategoryId === categoryId) {
       this.filteredProducts = this.products?.slice();
@@ -70,6 +71,7 @@ export class ProductComponent implements OnInit {
     }
   }
 
+  //ngDocs
   buyNow(productId) {
     this.bazaarDataService.addToCart({ productId });
     const { name, imageURL, price } = this.filteredProducts.find(product => product.id === productId);

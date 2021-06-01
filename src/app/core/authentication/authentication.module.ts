@@ -23,6 +23,6 @@ const authenticationRoute: Routes = [
     FormsModule,
     RouterModule.forChild(authenticationRoute)
   ],
-  exports: [LoginComponent, RegisterComponent]
+  exports: []
 })
 export class AuthenticationModule { }

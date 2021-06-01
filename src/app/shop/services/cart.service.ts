@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { ProductDataModel } from '../models/banner-data.model';
+import { ProductDataModel } from '../../shared/models/banner-data.model';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +16,7 @@ export class CartService {
 
   constructor() { }
 
+  //ngDocs
   updateCart(productId, productName, productUrl, originalPrice) {
     this.noOfCartItems += 1;
     this.totalPrice += originalPrice;
@@ -32,18 +33,22 @@ export class CartService {
     this.cartDetails$.next(this.orderDetails);
   }
 
+  //ngDocs
   getTotalCartItems() {
     return this.totalCartItems$;
   }
 
+  //ngDocs
   getCartDetails() {
     return this.cartDetails$;
   }
 
+  //ngDocs
   getCartPrice() {
     return this.totalPrice$;
   }
 
+  //ngDocs
   updateProduct(productId, increment) {
     const product = this.orderDetails.find(product => product.productId === productId);
     if (increment) {
@@ -64,6 +69,4 @@ export class CartService {
     this.totalPrice$.next(this.totalPrice);
     this.cartDetails$.next(this.orderDetails);
   }
-
-
 }

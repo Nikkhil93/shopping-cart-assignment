@@ -2,8 +2,8 @@ import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testin
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
-import { CategoriesDataModel } from 'src/app/dal/models/banner-data.model';
-import { BazaarDataService } from 'src/app/dal/services/bazaar-data.service';
+import { CategoriesDataModel } from 'src/app/shared/models/banner-data.model';
+import { BazaarDataService } from '../services/bazaar-data.service';
 
 import { ProductComponent } from './product.component';
 

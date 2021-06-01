@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter, takeWhile } from 'rxjs/operators';
-import { SpinnerDisplayService } from './dal/services/spinner-display.service';
+import { SpinnerDisplayService } from './core/services/spinner-display.service';
 
 @Component({
   selector: 'app-root',

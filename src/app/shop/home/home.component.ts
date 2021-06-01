@@ -1,9 +1,9 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
-import { SpinnerDisplayService } from 'src/app/dal/services/spinner-display.service';
-import { BannerImageModel, CategoriesDataModel } from '../../dal/models/banner-data.model';
-import { BazaarDataService } from '../../dal/services/bazaar-data.service';
+import { SpinnerDisplayService } from 'src/app/core/services/spinner-display.service';
+import { BannerImageModel, CategoriesDataModel } from '../../shared/models/banner-data.model';
+import { BazaarDataService } from '../services/bazaar-data.service';
 
 @Component({
   selector: 'app-home',
@@ -60,6 +60,7 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  //ngDocs
   exploreCategory(categoryId) {
     const categoryDetails: NavigationExtras = {
       state: {

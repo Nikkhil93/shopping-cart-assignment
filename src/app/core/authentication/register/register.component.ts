@@ -18,6 +18,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  //ngDocs
   submit() {
     this.formSubmitted = true;
     const confirmPassword = this.registerForm.controls.confirmPassword.value
