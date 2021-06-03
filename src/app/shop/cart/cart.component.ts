@@ -2,6 +2,7 @@ import { Component, Inject, OnInit, Optional } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Subscription } from 'rxjs';
+import { orderDetails } from '../../shared/models/banner-data.model';
 import { CartDialogService } from '../services/cart-diaog.service';
 import { CartService } from '../services/cart.service';
 
@@ -13,7 +14,7 @@ import { CartService } from '../services/cart.service';
 export class CartComponent implements OnInit {
 
   totalCartItems: number;
-  cartProducts$: BehaviorSubject<any[]>;
+  cartProducts$: BehaviorSubject<orderDetails[]>;
   cartPrice$: BehaviorSubject<number>;
   private subscriptions: Subscription;
 

@@ -7,32 +7,13 @@ export class DataService {
 
   constructor() { }
 
-  static async getRequest(endpoint: string) {
-    const response = await fetch(`${this.url}${endpoint}`);
-    if (!response.ok) {
-      throw new Error(response.statusText);
-    }
-    const data = await response.json();
-    return data;
-  }
-
+  //httpClient throwing CORS issue hence sticking with Promise
   static async postRequest(endpoint:any, data: any) {
     const response = await fetch(`${this.url}${endpoint}`, {
       method: "POST",
       body: JSON.stringify(data)
-
     });
     const jsonData = await response.json()
     return jsonData;
   }
-
-  static async getLoginRequest(){
-    const response = await fetch(`${this.url}/login`);
-    if (!response.ok) {
-      throw new Error(response.statusText);
-    }
-    const data = await response.json();
-    return data;
-  }
-
 }

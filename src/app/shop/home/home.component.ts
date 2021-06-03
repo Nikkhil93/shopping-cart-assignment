@@ -50,11 +50,11 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.bazaarDataService.getBannersData().then((data)=>{
+    this.bazaarDataService.getBannersData().subscribe((data)=>{
       this.banners = data;
       this.spinnerDisplayService.showSpinner$.next(false);
     });
-    this.bazaarDataService.getCategoriesData().then((data)=>{
+    this.bazaarDataService.getCategoriesData().subscribe((data)=>{
       this.categories = data?.filter(category => category.enabled);
       this.spinnerDisplayService.showSpinner$.next(false);
     });

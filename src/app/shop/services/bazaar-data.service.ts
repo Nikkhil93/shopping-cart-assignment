@@ -1,7 +1,8 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { DataService } from '../../core/services/data-service';
-import { SpinnerDisplayService } from '../../core/services/spinner-display.service';
+import { Observable } from 'rxjs';
+import { DataService } from 'src/app/core/services/data-service';
+import { environment } from 'src/environments/environment';
 import { BannerImageModel, CategoriesDataModel, ProductDataModel } from '../../shared/models/banner-data.model';
 
 @Injectable({
@@ -9,34 +10,26 @@ import { BannerImageModel, CategoriesDataModel, ProductDataModel } from '../../s
 })
 
 export class BazaarDataService {
-  constructor( private router: Router, private spinnerDisplayService: SpinnerDisplayService) { }
+  private url: string = environment.apiUrl;
+  constructor( private http: HttpClient ) { }
 
   //ngDocs
-  private handleError(error){
-    DataService.errorOccured= true;
-    this.spinnerDisplayService.showSpinner$.next(false);
-    this.router.navigate(['/error']);
+  getBannersData(): Observable<BannerImageModel[]> {
+    return this.http.get<BannerImageModel[]>(`${this.url}banners`);
   }
 
   //ngDocs
-  getBannersData(): Promise<BannerImageModel[]> {
-    this.spinnerDisplayService.showSpinner$.next(true);
-    return DataService.getRequest("banners").catch(this.handleError.bind(this))
+  getCategoriesData(): Observable<CategoriesDataModel[]> {
+    return this.http.get<CategoriesDataModel[]>(`${this.url}categories`);
+  }
+  
+  //ngDocs
+  getProductsData(): Observable<ProductDataModel[]> {
+    return this.http.get<ProductDataModel[]>(`${this.url}products`);
   }
 
   //ngDocs
-  getCategoriesData(): Promise<CategoriesDataModel[]> {
-    this.spinnerDisplayService.showSpinner$.next(true);
-    return DataService.getRequest("categories").catch(this.handleError.bind(this))
-  }
-
-  //ngDocs
-  getProductsData(): Promise<ProductDataModel[]> {
-    this.spinnerDisplayService.showSpinner$.next(true);
-    return DataService.getRequest("products").catch(this.handleError.bind(this))
-  }
-
-  //ngDocs
+  //HttpClient throws CORS issue hence sticking to this
   addToCart(productId) : Promise<any> {
     return DataService.postRequest("addToCart",productId);
   }

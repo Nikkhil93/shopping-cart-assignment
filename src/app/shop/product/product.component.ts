@@ -49,11 +49,11 @@ export class ProductComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.bazaarDataService.getCategoriesData().then((data: any[]) => {
+    this.bazaarDataService.getCategoriesData().subscribe((data: CategoriesDataModel[]) => {
       this.categories = data?.filter(category => category.enabled);
       this.spinnerDisplayService.showSpinner$.next(false);
     });
-    this.bazaarDataService.getProductsData().then(data => {
+    this.bazaarDataService.getProductsData().subscribe((data: ProductDataModel[]) => {
       this.products = data;
       this.filterProducts(this.currentState?.state?.categoryId);
       this.spinnerDisplayService.showSpinner$.next(false);
@@ -73,9 +73,10 @@ export class ProductComponent implements OnInit {
 
   //ngDocs
   buyNow(productId) {
-    this.bazaarDataService.addToCart({ productId });
-    const { name, imageURL, price } = this.filteredProducts.find(product => product.id === productId);
+    this.bazaarDataService.addToCart({ productId }).then(()=>{
+      const { name, imageURL, price } = this.filteredProducts.find(product => product.id === productId);
     this.cartService.updateCart(productId, name, imageURL, price);
     this._snackbar.open("Added to Cart", "Dismiss", { duration: 3000 });
+    });
   }
 }

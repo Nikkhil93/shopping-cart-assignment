@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { ProductDataModel } from '../../shared/models/banner-data.model';
+import { orderDetails } from '../../shared/models/banner-data.model';
 
 @Injectable({
   providedIn: 'root'
@@ -8,11 +8,11 @@ import { ProductDataModel } from '../../shared/models/banner-data.model';
 export class CartService {
 
   noOfCartItems: number = 0;
-  orderDetails = [];
+  orderDetails: orderDetails[] = [];
   totalPrice: number = 0;
   totalCartItems$: BehaviorSubject<number> = new BehaviorSubject(0);
   totalPrice$: BehaviorSubject<number> = new BehaviorSubject(0);
-  cartDetails$: BehaviorSubject<ProductDataModel[]> = new BehaviorSubject(null);
+  cartDetails$: BehaviorSubject<orderDetails[]> = new BehaviorSubject(null);
 
   constructor() { }
 

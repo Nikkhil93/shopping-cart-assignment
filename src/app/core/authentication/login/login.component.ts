@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
   submit() {
     this.spinnerDisplayService.showSpinner$.next(true);
     this.formSubmitted = true;
-    this.loginService.loginDetails().then((res)=>{
+    this.loginService.loginDetails().subscribe((res)=>{
       this.spinnerDisplayService.showSpinner$.next(false);
       const matchedUser = res.filter(userDetails => userDetails.email === this.email && userDetails.password === this.password);
       if (this.loginForm.valid && matchedUser.length===1) {
@@ -34,9 +34,6 @@ export class LoginComponent implements OnInit {
       else{
         this.incorrectDetails = true;
       }
-    }).catch(()=>{
-      this.spinnerDisplayService.showSpinner$.next(false);
-      this.route.navigate(['error']);
-    });
+    })
   }
 }
