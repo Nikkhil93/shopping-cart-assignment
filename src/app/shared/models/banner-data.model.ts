@@ -31,7 +31,7 @@ export interface ProductDataModel {
 export interface orderDetails { 
   productId:string, 
   productName: string, 
-  productUrl: number,
+  productUrl: string,
   originalPrice: number, 
   productPrice: number, 
   productValue: number

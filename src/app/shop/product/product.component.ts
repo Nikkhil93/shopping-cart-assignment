@@ -75,8 +75,8 @@ export class ProductComponent implements OnInit {
   buyNow(productId) {
     this.bazaarDataService.addToCart({ productId }).then(()=>{
       const { name, imageURL, price } = this.filteredProducts.find(product => product.id === productId);
-    this.cartService.updateCart(productId, name, imageURL, price);
-    this._snackbar.open("Added to Cart", "Dismiss", { duration: 3000 });
+      this.cartService.updateCart(productId, name, imageURL, price);
+      this._snackbar.open("Added to Cart", "Dismiss", { duration: 3000 });
     });
   }
 }

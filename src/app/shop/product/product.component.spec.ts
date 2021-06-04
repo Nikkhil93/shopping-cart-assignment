@@ -1,7 +1,9 @@
-import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { ComponentFixture, fakeAsync, flush, TestBed, tick } from '@angular/core/testing';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
+import { of } from 'rxjs'
 import { CategoriesDataModel } from 'src/app/shared/models/banner-data.model';
 import { BazaarDataService } from '../services/bazaar-data.service';
 
@@ -61,7 +63,7 @@ describe('ProductComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MatSnackBarModule,RouterTestingModule,BrowserAnimationsModule],
+      imports: [MatSnackBarModule,RouterTestingModule,BrowserAnimationsModule, HttpClientTestingModule],
       declarations: [ ProductComponent ],
       providers: [BazaarDataService]
     })
@@ -83,10 +85,11 @@ describe('ProductComponent', () => {
     let app = fixture.debugElement.componentInstance;
     let dataService = fixture.debugElement.injector.get(BazaarDataService);
     let spy = spyOn(dataService, 'getCategoriesData')
-      .and.returnValue(Promise.resolve(categoriesMock));
+      .and.returnValue(of(categoriesMock));
     fixture.detectChanges();
     tick();
     expect(app.categories).toEqual(categoriesMock);
+    flush();
   }));
 
   it('should fetch product data successfully if called asynchronously', fakeAsync(() => {
@@ -94,20 +97,31 @@ describe('ProductComponent', () => {
     let app = fixture.debugElement.componentInstance;
     let dataService = fixture.debugElement.injector.get(BazaarDataService);
     let spy = spyOn(dataService, 'getProductsData')
-      .and.returnValue(Promise.resolve(productsMock));
+      .and.returnValue(of(productsMock));
     fixture.detectChanges();
     tick();
     expect(app.products).toEqual(productsMock);
+    flush();
   }));
 
-  it('should call bazaarDataService',()=>{
-    let service = TestBed.inject(BazaarDataService);
-    component.filteredProducts = productsMock;
-    spyOn(service, 'addToCart');
-    component.buyNow('5b6c6a7f01a7c38429530883');
-    expect(service.addToCart).toHaveBeenCalledWith({productId:'5b6c6a7f01a7c38429530883'});
+  it('should call bazaarDataService',fakeAsync(()=>{
 
-  });
+    let fixture = TestBed.createComponent(ProductComponent);
+    let app = fixture.debugElement.componentInstance;
+    let dataService = fixture.debugElement.injector.get(BazaarDataService);
+    component.filteredProducts = productsMock;
+    let spy = spyOn(dataService, 'addToCart').withArgs({productId:'5b6c6a7f01a7c38429530883'})
+      .and.returnValue(Promise.resolve({
+        "response": "Success",
+        "responseMessage": "Product added to cart successfully"
+      }));
+      component.buyNow('5b6c6a7f01a7c38429530883');
+    fixture.detectChanges();
+    tick();
+    expect(dataService.addToCart).toHaveBeenCalledWith({productId:'5b6c6a7f01a7c38429530883'});
+    flush();
+  }));
+
   it('should update selectedCategory and filtered projects from filterProducts', () => {
     component.products = productsMock;
     component.categories = categoriesMock;
