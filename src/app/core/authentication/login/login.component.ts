@@ -12,17 +12,24 @@ import { SpinnerDisplayService } from '../../services/spinner-display.service';
 export class LoginComponent implements OnInit {
 
   @ViewChild('loginForm') loginForm: NgForm;
-  formSubmitted: boolean = false;
-  password: string;
-  email: string;
-  incorrectDetails: boolean = false;
+  public formSubmitted: boolean = false;
+  public password: string;
+  public email: string;
+  public incorrectDetails: boolean = false;
 
-  constructor(private route: Router, private loginService: LoginService, private spinnerDisplayService: SpinnerDisplayService) { }
+  constructor(
+    private route: Router,
+    private loginService: LoginService,
+    private spinnerDisplayService: SpinnerDisplayService
+  ) { }
 
   ngOnInit(): void { }
 
-  //ngDocs
-  submit() {
+  /* Will be calling the login api, fetch the list of users, if the entered user matches any
+    then user will be redirected to 'home' else an error block will be shown with
+    test email and test password
+  */
+  public submit() {
     this.spinnerDisplayService.showSpinner$.next(true);
     this.formSubmitted = true;
     this.loginService.loginDetails().subscribe((res)=>{

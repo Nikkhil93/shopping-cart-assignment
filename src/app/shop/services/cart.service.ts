@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs';
 import { orderDetails } from '../../shared/models/banner-data.model';
 
 @Injectable({
@@ -7,17 +7,17 @@ import { orderDetails } from '../../shared/models/banner-data.model';
 })
 export class CartService {
 
-  noOfCartItems: number = 0;
-  orderDetails: orderDetails[] = [];
-  totalPrice: number = 0;
-  totalCartItems$: BehaviorSubject<number> = new BehaviorSubject(0);
-  totalPrice$: BehaviorSubject<number> = new BehaviorSubject(0);
-  cartDetails$: BehaviorSubject<orderDetails[]> = new BehaviorSubject(null);
+  private noOfCartItems: number = 0;
+  private orderDetails: orderDetails[] = [];
+  private totalPrice: number = 0;
+  public totalCartItems$: BehaviorSubject<number> = new BehaviorSubject(0);
+  public totalPrice$: BehaviorSubject<number> = new BehaviorSubject(0);
+  public cartDetails$: BehaviorSubject<orderDetails[]> = new BehaviorSubject(null);
 
   constructor() { }
 
-  //ngDocs
-  updateCart(productId, productName, productUrl, originalPrice) {
+  //Adds/increases an item present in a cart used in product component
+  public updateCart(productId, productName, productUrl, originalPrice) {
     this.noOfCartItems += 1;
     this.totalPrice += originalPrice;
 
@@ -33,23 +33,23 @@ export class CartService {
     this.cartDetails$.next(this.orderDetails);
   }
 
-  //ngDocs
-  getTotalCartItems() {
+  //returns total catrt items, used in cart and header
+  public getTotalCartItems(): BehaviorSubject<number> {
     return this.totalCartItems$;
   }
 
-  //ngDocs
-  getCartDetails() {
+  //returns cartsDetails behaviour subject
+  public getCartDetails(): BehaviorSubject<orderDetails[]> {
     return this.cartDetails$;
   }
 
-  //ngDocs
-  getCartPrice() {
+  //fetching the total price
+  public getCartPrice(): BehaviorSubject<number> {
     return this.totalPrice$;
   }
 
-  //ngDocs
-  updateProduct(productId, increment) {
+  //increases or decreases the number of item in the cart
+  public updateProduct(productId, increment) {
     const product = this.orderDetails.find(product => product.productId === productId);
     if (increment) {
       product.productValue += 1;

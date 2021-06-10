@@ -16,7 +16,7 @@ export class LoginService{
 
   private url: string = environment.apiUrl;
   constructor(private http:HttpClient){}
-  //ngDocs
+  //makes an http request to fetch all the user email and password.
   loginDetails() : Observable<loginDetails[]> {
     return this.http.get<loginDetails[]>(`${this.url}login`)
   }

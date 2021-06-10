@@ -38,10 +38,8 @@ import { BazaarDataService } from '../services/bazaar-data.service';
 })
 export class HomeComponent implements OnInit {
 
-  banners: BannerImageModel[];
-  categories: CategoriesDataModel[];
-  animateCenter: string = "normal"; 
-  animateStart:string = "normal";
+  public banners: BannerImageModel[];
+  public categories: CategoriesDataModel[];
 
   constructor(
     private bazaarDataService: BazaarDataService,
@@ -60,7 +58,7 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  //ngDocs
+  //Navigates to 'product' with clicked categroy in focus
   exploreCategory(categoryId) {
     const categoryDetails: NavigationExtras = {
       state: {

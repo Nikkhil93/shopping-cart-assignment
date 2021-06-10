@@ -29,13 +29,12 @@ import { SpinnerDisplayService } from 'src/app/core/services/spinner-display.ser
 })
 export class ProductComponent implements OnInit {
 
-  categories: CategoriesDataModel[];
-  products: ProductDataModel[];
-  selectedCategoryId: string;
-  filteredProducts: ProductDataModel[];
-  showAll: boolean = true;
-  currentState: NavigationExtras;
-  selectedCategory: string = "All Items";
+  public categories: CategoriesDataModel[];
+  public products: ProductDataModel[];
+  public filteredProducts: ProductDataModel[];
+  public selectedCategory: string = "All Items";
+  private selectedCategoryId: string;
+  private currentState: NavigationExtras;
 
   constructor(
     private bazaarDataService: BazaarDataService,
@@ -60,8 +59,8 @@ export class ProductComponent implements OnInit {
     });
   }
 
-  //ngDocs
-  filterProducts(categoryId: string) {
+  // Filter the products on the basis of currently clicked categoryId in the side-nav of page
+  public filterProducts(categoryId: string) {
     if (this.selectedCategoryId === categoryId) {
       this.filteredProducts = this.products?.slice();
     } else {
@@ -71,8 +70,8 @@ export class ProductComponent implements OnInit {
     }
   }
 
-  //ngDocs
-  buyNow(productId) {
+  //Add the item in the cart.
+  public buyNow(productId: string) {
     this.bazaarDataService.addToCart({ productId }).then(()=>{
       const { name, imageURL, price } = this.filteredProducts.find(product => product.id === productId);
       this.cartService.updateCart(productId, name, imageURL, price);

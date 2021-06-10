@@ -29,6 +29,7 @@ describe('CartComponent', () => {
 
   it('should call cartservice.updateProduct from updateProduct',()=>{
     let service = TestBed.inject(CartService);
+    //@ts-ignore
     service.orderDetails = [{originalPrice: 165,
       productId: "5b6c6b7001a7c38429530885",
       productName: "Fresho Pomegrante Peeled, 500 gm",
@@ -42,6 +43,7 @@ describe('CartComponent', () => {
 
   it('should call cartservice.updateProduct from updateProduct with true',()=>{
     let service = TestBed.inject(CartService);
+    //@ts-ignore
     service.orderDetails = [{originalPrice: 165,
       productId: "5b6c6b7001a7c38429530885",
       productName: "Fresho Pomegrante Peeled, 500 gm",

@@ -6,5 +6,5 @@ import { BehaviorSubject } from "rxjs";
 })
 
 export class SpinnerDisplayService {
-  showSpinner$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  public showSpinner$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 }

@@ -131,6 +131,7 @@ describe('ProductComponent', () => {
   it('should not update selectedCategory from filteredItems', () => {
     component.products = productsMock;
     component.categories = categoriesMock;
+    //@ts-ignore
     component.selectedCategoryId = '5b6899953d1a866534f516e2';
     component.filterProducts('5b6899953d1a866534f516e2');
     expect(component.selectedCategory).toBe('All Items');

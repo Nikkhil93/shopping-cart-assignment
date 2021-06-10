@@ -9,10 +9,9 @@ import { SpinnerDisplayService } from './core/services/spinner-display.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit ,OnDestroy{
-  currentUrl = '';
+  public currentUrl: string = '';
+  public isLoading: boolean;
   private _isComponentActive = true;
-  totalCartItems: number;
-  isLoading: boolean;
 
   constructor(
     private router: Router,
@@ -23,7 +22,7 @@ export class AppComponent implements OnInit ,OnDestroy{
   ngOnInit() {
     // demonstrating the use of takeWhile to unsubscribe
     this.router.events.pipe(takeWhile(() => this._isComponentActive), filter(event => event instanceof NavigationEnd))
-    .subscribe((event: any) => { 
+    .subscribe((event: any) => {
       this.currentUrl = event.url;
     });
     this.spinnerDisplayService.showSpinner$.pipe(takeWhile(() => this._isComponentActive))

@@ -15,6 +15,8 @@ import { CartService } from '../../shop/services/cart.service';
   styleUrls:['./header.component.scss']
 })
 export class HeaderComponent implements OnInit , OnDestroy{
+
+  public cartValue$: Subject<number>;
   private subscriptions : Subscription = new Subscription();
   private dialogRef$: MatDialogRef<CartComponent>;
   private isAboveMedium: boolean;
@@ -23,7 +25,6 @@ export class HeaderComponent implements OnInit , OnDestroy{
     disableClose: true,
     position: { right: '10%', top :'82px' }
   }
-  cartValue$: Subject<number>;
 
   constructor(
     private cartService: CartService,
@@ -31,7 +32,7 @@ export class HeaderComponent implements OnInit , OnDestroy{
     private dialog: MatDialog,
     private router: Router,
     private cartDialog: CartDialogService
-  ) { 
+  ) {
     this.subscriptions.add(this.breakPointObserver.observe('(min-width: 992px)').subscribe((state)=>{
       this.isAboveMedium = state.matches;
     }));
@@ -45,11 +46,11 @@ export class HeaderComponent implements OnInit , OnDestroy{
     );
   }
 
-  //ngDocs
+  //If on tablet or below screen size then redirect to 'cart' else open dialog
   public cartAction(){
     this.isAboveMedium ? this.openDialog() : this.router.navigate(['/cart']);
   }
-  //ngDocs
+  //Open a dialog with cartComponent inside it.
   private openDialog(){
     this.dialogConfig.data = this.isAboveMedium;
     this.dialogRef$ = this.dialog.open(CartComponent, this.dialogConfig);
@@ -57,5 +58,4 @@ export class HeaderComponent implements OnInit , OnDestroy{
   ngOnDestroy(){
     this.subscriptions.unsubscribe();
   }
-
 }

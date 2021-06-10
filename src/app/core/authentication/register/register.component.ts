@@ -10,16 +10,16 @@ import { Router } from '@angular/router';
 export class RegisterComponent implements OnInit {
 
   @ViewChild('registerForm') registerForm: NgForm;
-  confirmPasswordErrorMsg: string = '';
-  formSubmitted: boolean = false
+  public confirmPasswordErrorMsg: string = '';
+  public formSubmitted: boolean = false
 
   constructor(private route: Router) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
-  //ngDocs
-  submit() {
+  /* Checks if the form is valid on the submit button click and redirects to "home" if is valid else
+  displays error message */
+  public submit() {
     this.formSubmitted = true;
     const confirmPassword = this.registerForm.controls.confirmPassword.value
     if (confirmPassword === "" || (confirmPassword !== this.registerForm.controls.password.value)) {

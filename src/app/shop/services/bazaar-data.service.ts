@@ -13,24 +13,23 @@ export class BazaarDataService {
   private url: string = environment.apiUrl;
   constructor( private http: HttpClient ) { }
 
-  //ngDocs
-  getBannersData(): Observable<BannerImageModel[]> {
+  //Http request to fetch banners data
+  public getBannersData(): Observable<BannerImageModel[]> {
     return this.http.get<BannerImageModel[]>(`${this.url}banners`);
   }
 
-  //ngDocs
-  getCategoriesData(): Observable<CategoriesDataModel[]> {
+  //Http request to fetch categories data
+  public getCategoriesData(): Observable<CategoriesDataModel[]> {
     return this.http.get<CategoriesDataModel[]>(`${this.url}categories`);
   }
-  
-  //ngDocs
-  getProductsData(): Observable<ProductDataModel[]> {
+
+  //Http request to fetch all the products
+  public getProductsData(): Observable<ProductDataModel[]> {
     return this.http.get<ProductDataModel[]>(`${this.url}products`);
   }
 
-  //ngDocs
-  //HttpClient throws CORS issue hence sticking to this
-  addToCart(productId) : Promise<any> {
+  //Canned server throws CORS issue, hence using promise to make post request
+  public addToCart(productId) : Promise<any> {
     return DataService.postRequest("addToCart",productId);
   }
 }

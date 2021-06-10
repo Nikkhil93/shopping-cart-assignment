@@ -13,16 +13,16 @@ import { CartService } from '../services/cart.service';
 })
 export class CartComponent implements OnInit {
 
-  totalCartItems: number;
-  cartProducts$: BehaviorSubject<orderDetails[]>;
-  cartPrice$: BehaviorSubject<number>;
+  public totalCartItems: number;
+  public cartProducts$: BehaviorSubject<orderDetails[]>;
+  public cartPrice$: BehaviorSubject<number>;
   private subscriptions: Subscription;
 
   constructor(
     private cartService: CartService,
     private router: Router,
     private cartDialog: CartDialogService,
-    @Optional() @Inject(MAT_DIALOG_DATA) public data?: any
+    @Optional() @Inject(MAT_DIALOG_DATA) public data?: boolean
     ) { }
 
   ngOnInit(): void {
@@ -32,19 +32,19 @@ export class CartComponent implements OnInit {
     this.cartPrice$ = this.cartService.getCartPrice();
   }
 
-  //ngDocs
-  updateProduct(productId, increment) {
+  //To add or decrease any product in cart
+  public updateProduct(productId, increment) {
     this.cartService.updateProduct(productId, increment);
   }
-  //ngDocs
-  navigateIfEmpty(){
+  //Navigates to "product" if clicked on continue shopping button and cart is empty
+  public navigateIfEmpty(){
     if(this.totalCartItems === 0){
       this.router.navigate(['/product']);
       this.data?this.closeDialog():'';
     }
   }
-  //ngDocs
-  closeDialog(){
+  //closes the dialog
+  public closeDialog(){
     this.cartDialog.closeClicked.next(true);
   }
 
