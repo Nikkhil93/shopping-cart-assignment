@@ -1,0 +1,9 @@
+@media (max-width: 576px){
+    .container, .container-sm {
+        max-width: 100%;
+    }
+}
+nav{
+    padding: 0;
+    box-shadow: 0 2px 2px #efefef;
+}

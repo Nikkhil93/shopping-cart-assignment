@@ -1,0 +1,45 @@
+<div class=" container alert-danger d-flex justify-content-center" *ngIf="incorrectDetails"><h1> Invalid user, Try test@test.com and test123</h1></div>
+<div class="container d-flex mt-2">
+  <div class="login-content">
+    <h1><strong>Login</strong></h1>
+    <p>Access to your Orders, Wishlist and Recommendation </p>
+  </div>
+  <div class="ml-4 col-md-4">
+    <form #loginForm="ngForm" id="loginForm" (ngSubmit)="submit()" [ngClass]="{'was-validated':formSubmitted}">
+      <div class="form-group">
+        <label for="email" class="col-form-label">Email</label>
+        <input 
+          id="email" 
+          name="email" 
+          class="form-control" 
+          type="email" 
+          [(ngModel)]= "email"
+          aria-required="true"
+          pattern="\S+@\S+\.\S+" 
+          required 
+          autocomplete="off">
+        <div class="invalid-feedback">
+          Please enter a valid email.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password" class="col-form-label">Password</label>
+        <input 
+          id="password" 
+          name="password" 
+          class="form-control" 
+          type="password"
+          [(ngModel)]= "password"
+          required
+          minlength="6" 
+          pattern="(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)"
+          title="Password must be alphanumeric and must have minimum six characters."
+          autocomplete="off">
+        <div class="invalid-feedback">
+          Please enter a valid password.
+        </div>
+      </div>
+      <button type="submit" class=" w-100 btn btn-pink mt-2">Login</button>
+    </form>
+  </div>
+</div>

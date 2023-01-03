@@ -1,0 +1,65 @@
+
+    
+<div *ngIf="data" class="dialog-header cart-header p-3 d-flex justify-content-between">
+  <span><strong>My Cart </strong>({{totalCartItems}} items)</span>
+  <mat-icon aria-hidden="false" aria-label="Close icon"
+  (click)="closeDialog()">close</mat-icon>
+</div>
+<div class="cartContainer">
+  <div *ngIf="totalCartItems > 0 "[ngClass]="{'pt-3':!data, 'cart-in-dialog': data}" class="cart-section pt-3">
+    <div *ngIf="!data" class="cart-header p-3">My Cart ({{totalCartItems}} items)</div>
+    <div class="cart-body mt-3">
+      <ng-container *ngFor="let product of cartProducts$ | async">
+        <div class="product px-2 d-flex flex-row align-items-center">
+          <img src="assets{{product.productUrl}}" width="120" height="auto" loading="lazy">
+          <div class="d-flex flex-column ml-4">
+            <h6>{{product.productName}}</h6>
+            <div class="d-flex flex-row">
+              <button 
+                  class="btn btn-pink btn-sm"
+                  (click)="updateProduct(product.productId, false)">-
+              </button>
+              <span class="mx-1 product-number">{{product.productValue}} </span>
+              <button 
+                  class="btn btn-pink btn-sm"
+                  (click)="updateProduct(product.productId, true)">+
+              </button> <span class="mx-1 product-number">x {{product.originalPrice}}</span>
+            </div>
+          </div>
+          <div class="price ml-auto">
+            <strong>Rs.{{product.productPrice}} </strong>
+          </div>
+        </div>
+      </ng-container>      
+
+    </div>
+    <div class="cart-offer">
+      <figure class="offer-img">
+        <img
+          class="offer-image"
+          src="assets/static/images/lowest-price.png"
+          alt="lowest-price"
+          loading="lazy"
+        />
+      </figure>
+      <p class="offer-text">You won't find it cheaper anywhere</p>
+    </div>
+  </div>
+  <div *ngIf="totalCartItems===0" class="noItems">
+    <div>
+      <strong>No items in cart</strong><br />
+      <span>Your favourite items are just a click away</span>
+    </div> 
+  </div>
+  <div class="checkout">
+    <p *ngIf="totalCartItems!==0" class="promo-code">Promo code can be applied on payment page</p>
+    <button 
+    class="w-100 btn btn-pink d-sm-flex" 
+    [ngClass]="{'justify-content-between':totalCartItems!==0, 'justify-content-center':totalCartItems === 0}"
+    (click)="navigateIfEmpty()">
+      <span *ngIf="totalCartItems!==0">Proceed to checkout</span> 
+      <span *ngIf="totalCartItems ===0">Start Shopping</span> 
+      <span *ngIf="totalCartItems!==0" class="ml-2">Rs.{{cartPrice$ | async}}</span>
+    </button>
+  </div>
+</div>

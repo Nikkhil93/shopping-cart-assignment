@@ -1,0 +1,44 @@
+@import "../../../variables.scss";
+
+.product-item {
+  margin-bottom: 10px;
+  h4 {
+    height: 75px;
+    font-size: 1.25rem;
+  }
+}
+
+.buy-now-div {
+  padding-bottom: 5px;
+  border-bottom: 2px dashed $color-grey;
+}
+.products {
+  margin: 0 auto;
+}
+.categories-pane {
+  background-color: $color-grey;
+  button {
+    background-color: $color-grey;
+  }
+}
+.categories-btn {
+  padding: 0;
+  width: 100%;
+  margin-bottom: 20px;
+  button {
+    color: $color-white;
+    background-color: $color-pink;
+    height: 50px;
+  }
+  ul {
+    width: 100%;
+    li {
+      cursor: pointer;
+    }
+  }
+}
+
+.bg-hightlight {
+  background-color: $color-grey;
+  border: 1px solid $color-grey;
+}

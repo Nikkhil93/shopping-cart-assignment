@@ -8,8 +8,28 @@ Clone this repo and run following command for starting the mock server:
 
 ```
 npm install
-npm run start
 # or
 yarn install
-yarn start
+```
+
+## Shortcut to start
+
+Double click on the start.cmd file it will open two command prompts and execute the npm start and npm run start:api.
+
+## To start the fake API server (server):
+
+```
+npm run start:api
+```
+
+## To start the web development server (on http://localhost:4200/):
+
+```
+npm start
+```
+
+## To run the test cases
+
+```
+npm run testDev
 ```
