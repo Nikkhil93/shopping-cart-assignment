@@ -4,7 +4,7 @@ import { CanActivateRouteGuard } from './core/services/can-activate-route.guard'
 import { ErrorHandlerComponent } from './shared/error-handler/error-handler.component';
 
 const routes: Routes = [{
-  path: '',
+  path: '/',
   loadChildren:() => import('./shop/shop.module').then(m => m.ShopModule)
 },
 {
